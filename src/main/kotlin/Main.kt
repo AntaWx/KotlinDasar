@@ -23,5 +23,6 @@ fun main(args: Array<String>) {
          1 ->  HitungUmur()
          2 ->  PilihCanang()
          3 ->  OperasiMatematika()
+        else -> print("Opsi Belum Tersedia")
     }
 }

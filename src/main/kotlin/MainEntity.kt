@@ -35,6 +35,7 @@ fun PilihCanang(){
         opsi == 1 -> return HitungCanang(7000)
         opsi == 2 -> return HitungCanang(8000)
         opsi == 3 -> return HitungCanang(5000)
+        else -> print("menu belum tersedia")
     }
     clearScreen()
 }
@@ -86,22 +87,24 @@ public fun HitungCanang(harga: Int? ) {
     while (true) {
         clearScreen()
         print("\n|masukkan uang anda : ")
-        val uangAnda = readln().toInt();
+        val uangAnda = readln().toInt()
         val sisaUang = uangAnda - harga!! * jumlahInput.toInt()
-        if (uangAnda >= harga!!) {
-            print("|sisa uang anda = $sisaUang")
-            if (sisaUang >= 0){
-                break
-            }else if (harga > sisaUang) {
-                clearScreen()
-                print("\n|uang anda tidak cukup ingin mengulang? :")
-                val ulang = readln()
-                if (ulang == "y") {
-                    continue
-                } else {
-                    break
+        when {
+            uangAnda >= harga -> {
+                print("|sisa uang anda : $sisaUang")
+                when {
+                    sisaUang >= 0 -> break
+                    harga > sisaUang -> {
+                        print("\n|uang anda tidak cukup ingin mengulang? :")
+                        val ulang = readln()
+                        when (ulang) {
+                            "y", "Ya", "ya" -> continue
+                            else -> break
+                        }
+                    }
                 }
             }
+            else -> break
         }
     }
 }
